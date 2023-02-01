@@ -2,7 +2,7 @@ package jh.resturant.vo;
 
 public class ResturantVO {
 
-	private String bisinessNumber;
+	private String businessNumber;
 	private String businessName;
 	private String branchName;
 	private String bigBusinessCode;
@@ -41,11 +41,13 @@ public class ResturantVO {
 	private String hoInfo;
 	private String lon;
 	private String lat;
-	public String getBisinessNumber() {
-		return bisinessNumber;
+	
+	
+	public String getBusinessNumber() {
+		return businessNumber;
 	}
-	public void setBisinessNumber(String bisinessNumber) {
-		this.bisinessNumber = bisinessNumber;
+	public void setBusinessNumber(String businessNumber) {
+		this.businessNumber = businessNumber;
 	}
 	public String getBusinessName() {
 		return businessName;
@@ -277,7 +279,7 @@ public class ResturantVO {
 	}
 	@Override
 	public String toString() {
-		return "ResturantVO [bisinessNumber=" + bisinessNumber + ", businessName=" + businessName + ", branchName="
+		return "ResturantVO [businessNumber=" + businessNumber + ", businessName=" + businessName + ", branchName="
 				+ branchName + ", bigBusinessCode=" + bigBusinessCode + ", bigBusinessName=" + bigBusinessName
 				+ ", midBusinessCode=" + midBusinessCode + ", midBusinessName=" + midBusinessName
 				+ ", smallBusinessCode=" + smallBusinessCode + ", smallBusinessName=" + smallBusinessName

@@ -8,221 +8,149 @@
 
 
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="author" content="Untree.co">
-<link rel="shortcut icon" href="favicon.png">
-
-<meta name="description" content="" />
-<meta name="keywords" content="bootstrap, bootstrap4" />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Source+Serif+Pro:wght@400;700&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="css/owl.carousel.min.css">
-<link rel="stylesheet" href="css/owl.theme.default.min.css">
-<link rel="stylesheet" href="css/jquery.fancybox.min.css">
-<link rel="stylesheet" href="fonts/icomoon/style.css">
-<link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
-<link rel="stylesheet" href="css/daterangepicker.css">
-<link rel="stylesheet" href="css/aos.css">
-<link rel="stylesheet" href="css/style.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" type="text/css" />
+<!-- Google fonts-->
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
+<!-- Core theme CSS (includes Bootstrap)-->
+<link href="resources/css/styles.css" rel="stylesheet" />
 <title>식당 리스트</title>
 </head>
 <body>
-	<div class="site-mobile-menu site-navbar-target">
-		<div class="site-mobile-menu-header">
-			<div class="site-mobile-menu-close">
-				<span class="icofont-close js-menu-toggle"></span>
-			</div>
-		</div>
-		<div class="site-mobile-menu-body"></div>
-	</div>
-
-<!-- 테이블 -->
-<div class="hero">
-	<div class="container">
-			<div class="row align-items-center">
-				<div class="col-lg-7">
-					<div class="intro-wrap">
-						<h1 class="mb-5"><span class="d-block">Let's Enjoy Your</span> Taste In Gwangju</h1> 
-					</div>
-				</div>
-				<div class="col-lg-5">
-					<div class="slides">
-						<img src="images/rest.jpg" alt="Image" class="img-fluid active">
-					</div>
-				</div>
-			</div>
-		</div>
-     </div>
-     
-     <div class="untree_co-section">
-       <!-- Bootstrap Dark Table -->
-       <div class="container" >
-       <table> 
-		 	<tr>
-			<th style="padding-right: 10px; width:15%">
-			 <select class="form-control form-cotrol-sm" name="searchType" id="searchType">
-						<option value="resturantName">식당</option>
-						<option value="loadaddress">주소</option>
-			</select>
-			</th>
-			
-			<th style="padding-right: 10px; width: 50%;">
-				<input type="text" class="form-control form-control-sm" name="keyword" id="keyword">
-			</th>
-			
-			<th style="text-align:left; width:10%;">
-				<button class="btn btn-success" name="btnSearch" id="btnSearch" onclick="btnSearch" style="padding: 10px;"  >
-				검색</button>
-			</th>
-			<th>
-				<form action="/excelDown.do" method="post" style="width:20%">
-		         	 <c:forEach var="list" items="${list }" varStatus="loop">
-		         		  <input type="hidden" class="form-control" id=resturantName name="resturantName" value=${list.bisinessNumber } />
-			              <input type="hidden" class="form-control" id=address name="address" value=${list.businessName } />
-			              <input type="hidden" class="form-control" id=restPhone name="restPhone" value=${list.branchName } />
-			              <input type="hidden" class="form-control" id=restSector name="restSector" value=${list.bigBusinessCode } />
-		         	 </c:forEach>
-		         	 <input type="submit" class="btn btn-primary" value="Excel">
-		        </form>
-			</th>
-			</tr>
-		</table>
-		
-		</div>
-		<p>
-       
-       <div class="container">
-       <div class="card ">
-       
-         <h5 class="card-header bg-primary text-white">식당 리스트</h5>
-         <div class="table-responsive text-nowrap">
-           <table class="table card-table">
-             <thead>
-               <tr>
-                 <th>식당</th>
-                 <th>업종</th>
-                 <th>업종명</th>
-                 <th>지번주소</th>
-               </tr>
-             </thead>
-             <c:forEach var="list" items="${list }" varStatus="loop">
-             <tbody class="table-border-bottom-0">
-               <tr>
-                 <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>${list.bisinessNumber}</strong></td>
-                 <td>${list.businessName }</td>
-                 <td>${list.branchName }</td>
-                 <td>${list.bigBusinessCode}</td>
-               </tr>
-             </tbody>
-            </c:forEach>
-           </table>
-          
+	 <!-- Navigation-->
+     <nav class="navbar navbar-expand-lg navbar-light bg-light">
+         <div class="container px-5">
+             <a class="navbar-brand" href="index.html">BTFTech</a>
+             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+             <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                     <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                     <li class="nav-item"><a class="nav-link" href="list.do">List</a></li>
+                 </ul>
+             </div>
          </div>
-       </div> 
-       </div>
-       <!--/ Bootstrap Dark Table -->
-       
+     </nav>
 
-     
-     
-     
-     
-     <div class="site-footer">
-		<div class="inner first">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-6 col-lg-4">
-						<div class="widget">
-							<h3 class="heading">Gwangju Donggu</h3>
-							<p>광주 동구 식당 리스트</p>
-						</div>
-					</div>
+		<section class="testimonials text-center bg-light">
+        <div class="container-fluid">
+             <!-- Page Heading -->
+             <h1 class="h3 mb-2 text-gray-800">리스트</h1>
+             <h1>${pagination.startList }</h1>
+             <h1>${pagination.listSize }</h1>
+             <div class="card shadow mb-4">
+                 <div class="card-header py-3">
+                     <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                 </div>
+                 <div class="card-body">
+                     <div class="table-responsive">
+                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                             <thead>
+                                 <tr>
+                                     <th>상호명</th>
+                 <th>주소</th>
+                 <th>대분류</th>
+                 <th>중분류</th>
+                 <th>소분류</th>
+                                 </tr>
+                             </thead>
+                             <c:forEach var="list" items="${list }" varStatus="loop">
+                             <tbody>
+                                 <tr>
+                                     <td>${list.businessName}</td>
+                 <td>${list.lotNumberAddress }</td>
+                 <td>${list.bigBusinessName }</td>
+                 <td>${list.midBusinessName}</td>
+                 <td>${list.smallBusinessName}</td>
+                                 </tr>
+                             </tbody>
+                             </c:forEach>
+                         </table>
+                     </div>
+                 </div>
+             </div>
+
+         </div>
+			<!-- 페이징 -->
+		<div id ="paginationBox" class="text-center">
+			<ul class="pagination" style="justify-content: center; ">
 			
-					<div class="col-md-6 col-lg-4">
-						<div class="widget">
-							<h3 class="heading">Contact</h3>
-							<ul class="list-unstyled quick-info links">
-								<li class="email">jjh@beftech.co.kr</li>
-								<li class="phone">010-9323-1530</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-		
-	<div id="overlayer"></div>
-	<div class="loader">
-		<div class="spinner-border" role="status">
-			<span class="sr-only">Loading...</span>
-		</div>
-	</div>
+				<c:if test="${pagination.prev }">
+					<li class="page-item"><a class="page-link" href="#" 
+					onclick="fn_prev('${pagination.page }','${pagination.range }', '${pagination.rangeSize }','${pagination.listSize }'
+					, '${search.keyword1}', '${search.keyword2}', '${search.keyword3}', '${search.keyword4}', '${search.keyword5}')">이전</a>
+				</c:if>
+				<c:forEach begin="${pagination.startPage }" end="${pagination.endPage}" var="count">
+					<li class="page-item <c:out value="${pagination.page ==  count ? 'active' : ''}"/> ">
+					<a class="page-link" href="#" 
+						onclick="fn_pagination('${count	 }', '${pagination.range }','${paginationf.rangeSize }',
+						'${pagination.listSize }','${search.keyword1 }', '${search.keyword2}', '${search.keyword3}', '${search.keyword4}', '${search.keyword5}')">
+						${count}</a></li>
+				</c:forEach>	
+				
+				<c:if test="${pagination.next }">
+					<li class="page-item"><a class="page-link" href="#" 
+					onclick="fn_next('${pagination.page }','${pagination.range }', '${pagination.rangeSize }',
+						'${pagination.listSize }', '${search.keyword1}', '${search.keyword2}', '${search.keyword3}', '${search.keyword4}', '${search.keyword5}')">다음</a>
+					</li>
+				</c:if>
+			
+			</ul>
+		</div> 
+	<!-- 페이징 종료 -->
+       </section>
 
-<script src="js/jquery-3.4.1.min.js"></script>
-	<script src="js/popper.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/owl.carousel.min.js"></script>
-	<script src="js/jquery.animateNumber.min.js"></script>
-	<script src="js/jquery.waypoints.min.js"></script>
-	<script src="js/jquery.fancybox.min.js"></script>
-	<script src="js/aos.js"></script>
-	<script src="js/moment.min.js"></script>
-	<script src="js/daterangepicker.js"></script>
-
-	<script src="js/typed.js"></script>
-
-	<script src="js/custom.js"></script>
+<!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="resources/js/scripts.js"></script>
+        <script src="resources/js/jquery-3.4.1.min.js"></script>
 	</body>
-	
-	<script>
-function fn_prev(page, range, rangeSize, listSize, searchType, keyword) {
-	
-	var page = ((range - 2) * rangeSize) + 1;
-	var range = range - 1;
+<script>
+
+function fn_prev(page, range, rangeSize, listSize, keyword1, keyword2, keyword3, keyword4, keyword5) {
+	var page = ((range - 2) * rangeSize) + 1;
+	var range = range - 1;
 	var url = "/list.do";
 	url += "?page=" + page;
 	url += "&range=" + range;
 	url += "&listSize=" + listSize;
-	url += "&searchType=" + searchType;
-	url += "&keyword=" + keyword;
+	url += "&keyword1=" + keyword1;
+	url += "&keyword2=" + keyword2;
+	url += "&keyword3=" + keyword3;
+	url += "&keyword4=" + keyword4;
+	url += "&keyword5=" + keyword5;
 	location.href= url;
 }
 
-function fn_pagination(page, range, rangeSize, listSize, searchType, keyword) {
+function fn_pagination(page, range, rangeSize, listSize,  keyword1, keyword2, keyword3, keyword4, keyword5) {
 	var url = "/list.do";
 		url += "?page=" + page;
 		url += "&range=" + range;
 		url += "&listSize=" + listSize;
-		url += "&searchType=" + searchType;
-		url += "&keyword=" + keyword;
+		url += "&keyword1=" + keyword1;
+		url += "&keyword2=" + keyword2;
+		url += "&keyword3=" + keyword3;
+		url += "&keyword4=" + keyword4;
+		url += "&keyword5=" + keyword5;
 		location.href= url;
 }
 
-function fn_next(page, range, rangeSize, listSize, searchType, keyword) {
+function fn_next(page, range, rangeSize, listSize, keyword1, keyword2, keyword3, keyword4, keyword5) {
 	
 	var page = parseInt((range * rangeSize)) +1;
 	var range = parseInt(range) +1;
+	
 	var url = "/list.do";
 	url += "?page=" + page;
 	url += "&range=" + range;
 	url += "&listSize=" + listSize;
-	url += "&searchType=" + searchType;
-	url += "&keyword=" + keyword;
+	url += "&keyword1=" + keyword1;
+	url += "&keyword2=" + keyword2;
+	url += "&keyword3=" + keyword3;
+	url += "&keyword4=" + keyword4;
+	url += "&keyword5=" + keyword5;
 	location.href= url;
 }
-$(document).on('click','#btnSearch',function(e){
-	e.preventDefault();
-	var url = "/list.do";
-	url += "?searchType=" + $('#searchType').val();
-	url += "&keyword=" + $('#keyword').val();
-	location.href = url;
-	console.log(url);
-});
-</script>
 
-	
-	
+
+</script>
 </html>
