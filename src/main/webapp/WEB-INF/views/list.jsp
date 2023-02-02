@@ -29,13 +29,39 @@
              </div>
          </div>
      </nav>
+     
+      <!-- Masthead-->
+        <header class="masthead">
+            <div class="container position-relative">
+                <div class="row justify-content-center">
+                    <div class="col-xl-6">
+                        <div class="text-center text-white">
+                            <!-- Page heading-->
+                            <h1 class="mb-5">상호 검색</h1>
+                            <form class="form-subscribe" action="list.do" method="post" >
+                                <!-- Email address input-->
+                                <div class="row">
+                                    <div class="col">
+                                        <input class="form-control" id="keyword1" name="keyword1"type="text" placeholder="상호명"/><p></p>
+                                        <input class="form-control" id="keyword2" name="keyword2" type="text" placeholder="주소"/><p></p>
+                                        <input class="form-control" id="keyword3" name="keyword3" type="text" placeholder="대분류 업종"/><p></p>
+                                        <input class="form-control" id="keyword4" name="keyword4" type="text" placeholder="중분류 업종"/><p></p>
+                                        <input class="form-control" id="keyword5" name="keyword5" type="text" placeholder="소분류 업종"/><p></p>
+                                    </div>
+                                    <div class="col-auto"><button class="btn btn-primary" id="btnSearch"  type="button" >Submit</button></div> 
+                                    <!-- <div class="col-auto"><button class="btn btn-primary"  type="submit" >Submit</button></div>  --> 
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
 
 		<section class="testimonials text-center bg-light">
-        <div class="container-fluid">
+        <div class="container">
              <!-- Page Heading -->
              <h1 class="h3 mb-2 text-gray-800">리스트</h1>
-             <h1>${pagination.startList }</h1>
-             <h1>${pagination.listSize }</h1>
              <div class="card shadow mb-4">
                  <div class="card-header py-3">
                      <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
@@ -46,20 +72,20 @@
                              <thead>
                                  <tr>
                                      <th>상호명</th>
-                 <th>주소</th>
-                 <th>대분류</th>
-                 <th>중분류</th>
-                 <th>소분류</th>
+					                 <th>주소</th>
+					                 <th>대분류</th>
+					                 <th>중분류</th>
+					                 <th>소분류</th>
                                  </tr>
                              </thead>
                              <c:forEach var="list" items="${list }" varStatus="loop">
                              <tbody>
                                  <tr>
-                                     <td>${list.businessName}</td>
-                 <td>${list.lotNumberAddress }</td>
-                 <td>${list.bigBusinessName }</td>
-                 <td>${list.midBusinessName}</td>
-                 <td>${list.smallBusinessName}</td>
+                                     <td><button class="btn btn-primary" onclick="location.href='detail.do?businessNumber=${list.businessNumber}'">${list.businessName}</button></td>
+					                 <td>${list.lotNumberAddress }</td>
+					                 <td>${list.bigBusinessName }</td>
+					                 <td>${list.midBusinessName}</td>
+					                 <td>${list.smallBusinessName}</td>
                                  </tr>
                              </tbody>
                              </c:forEach>
@@ -97,6 +123,28 @@
 		</div> 
 	<!-- 페이징 종료 -->
        </section>
+       
+       
+        <!-- Footer-->
+        <footer class="footer bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
+                        <ul class="list-inline mb-2">
+                            <li class="list-inline-item"><a href="#!">About</a></li>
+                            <li class="list-inline-item">⋅</li>
+                            <li class="list-inline-item"><a href="#!">Contact</a></li>
+                            <li class="list-inline-item">⋅</li>
+                            <li class="list-inline-item"><a href="#!">Terms of Use</a></li>
+                            <li class="list-inline-item">⋅</li>
+                            <li class="list-inline-item"><a href="#!">Privacy Policy</a></li>
+                        </ul>
+                        <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2022. All Rights Reserved.</p>
+                    </div>
+                   
+                </div>
+            </div>
+        </footer>
 
 <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -150,7 +198,17 @@ function fn_next(page, range, rangeSize, listSize, keyword1, keyword2, keyword3,
 	url += "&keyword5=" + keyword5;
 	location.href= url;
 }
-
+$(document).on('click','#btnSearch',function(e){
+	e.preventDefault();
+	var url = "/list.do";
+	url += "?keyword1=" + $('#keyword1').val();
+	url += "&keyword2=" + $('#keyword2').val();
+	url += "&keyword3=" + $('#keyword3').val();
+	url += "&keyword4=" + $('#keyword4').val();
+	url += "&keyword5=" + $('#keyword5').val();
+	location.href = url;
+	console.log(url);
+});
 
 </script>
 </html>

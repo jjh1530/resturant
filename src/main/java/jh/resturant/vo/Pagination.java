@@ -129,7 +129,16 @@ public class Pagination {
 			this.endPage = this.pageCnt;
 			this.next = false;
 		}
-		
 	}
+
+	@Override
+	public String toString() {
+		return "Pagination [listSize=" + listSize + ", rangeSize=" + rangeSize + ", page=" + page + ", range=" + range
+				+ ", listCnt=" + listCnt + ", pageCnt=" + pageCnt + ", startPage=" + startPage + ", startList="
+				+ startList + ", endPage=" + endPage + ", prev=" + prev + ", next=" + next + "]";
+	}
+
+
+	
 
 }

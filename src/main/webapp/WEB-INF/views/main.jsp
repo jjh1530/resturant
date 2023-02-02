@@ -38,7 +38,7 @@
                         <div class="text-center text-white">
                             <!-- Page heading-->
                             <h1 class="mb-5">상호 검색</h1>
-                            <form class="form-subscribe" action="list.do" method="post" >
+                            <form class="form-subscribe" id ="frm" method="post" action="list.do" ><!--  -->
                                 <!-- Email address input-->
                                 <div class="row">
                                     <div class="col">
@@ -57,7 +57,6 @@
                 </div>
             </div>
         </header>
-        
         <!-- Footer-->
         <footer class="footer bg-light">
             <div class="container">
@@ -86,6 +85,7 @@
 	</body>
 <script>
 $(document).on('click','#btnSearch',function(e){
+	
 	e.preventDefault();
 	var url = "/list.do";
 	url += "?keyword1=" + $('#keyword1').val();
@@ -95,6 +95,9 @@ $(document).on('click','#btnSearch',function(e){
 	url += "&keyword5=" + $('#keyword5').val();
 	location.href = url;
 	console.log(url);
+
 });
+
+
 </script>
 </html>

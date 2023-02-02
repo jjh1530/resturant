@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import jh.resturant.mapper.ResturantMapper;
 import jh.resturant.vo.Pagination;
@@ -38,8 +39,9 @@ public class ResturantController {
 			,@RequestParam(required=false, defaultValue="")String keyword3
 			,@RequestParam(required=false, defaultValue="")String keyword4
 			,@RequestParam(required=false, defaultValue="")String keyword5
-			,@ModelAttribute("search")Search search) {
-
+			,@ModelAttribute("search")Search search
+			, HttpServletRequest request) throws Exception{
+		
 		
 		//검색
 		model.addAttribute("search", search);
@@ -49,11 +51,9 @@ public class ResturantController {
 		search.setKeyword4(keyword4);
 		search.setKeyword5(keyword5);
 		
-		List<ResturantVO> list = resturantMapper.getLists(search);
+		
 		int listCnt = resturantMapper.getListCnt(search);
-		
 		search.pageInfo(page, range, listCnt);
-		
 		//페이징
 		model.addAttribute("pagination", search);
 		model.addAttribute("keyword1", keyword1);
@@ -62,9 +62,19 @@ public class ResturantController {
 		model.addAttribute("keyword4", keyword4);
 		model.addAttribute("keyword5", keyword5);
 		
+		List<ResturantVO> list = resturantMapper.getLists(search);
+		
 		model.addAttribute("list",list);
 		model.addAttribute("listCnt",listCnt);
 		
 		return "list";
+	}
+	
+	
+	@RequestMapping("/detail.do")
+	public String detail(String businessNumber,Model model) throws Exception {
+		ResturantVO vo = resturantMapper.goDetail(businessNumber);
+		model.addAttribute("vo",vo);
+		return "detail";
 	}
 }

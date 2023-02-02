@@ -39,5 +39,4 @@ public class Search extends Pagination {
 	}
 	
 	
-	
 }

@@ -13,4 +13,6 @@ public interface ResturantMapper {
 	public List<ResturantVO> getLists(Search search);
 	
 	public int getListCnt(Search search);
+	
+	public ResturantVO goDetail(String bNum);
 }
