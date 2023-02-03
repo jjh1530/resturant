@@ -26,6 +26,7 @@
                  <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                      <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
                      <li class="nav-item"><a class="nav-link" href="list.do">List</a></li>
+                     <li class="nav-item"><a class="nav-link" href="shop.do">api</a></li>
                  </ul>
              </div>
          </div>
