@@ -8,7 +8,6 @@
 
 
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<!-- Bootstrap icons-->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" type="text/css" />
 <!-- Google fonts-->
 <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
@@ -17,7 +16,7 @@
 <title>식당 리스트</title>
 </head>
 <body>
-     <!-- Navigation-->
+	 <!-- Navigation-->
      <nav class="navbar navbar-expand-lg navbar-light bg-light">
          <div class="container px-5">
              <a class="navbar-brand" href="index.html">BTFTech</a>
@@ -26,12 +25,12 @@
                  <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                      <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
                      <li class="nav-item"><a class="nav-link" href="list.do">List</a></li>
-                     <li class="nav-item"><a class="nav-link" href="show.do">api</a></li>
                  </ul>
              </div>
          </div>
      </nav>
-	 <!-- Masthead-->
+     
+      <!-- Masthead-->
         <header class="masthead">
             <div class="container position-relative">
                 <div class="row justify-content-center">
@@ -39,17 +38,13 @@
                         <div class="text-center text-white">
                             <!-- Page heading-->
                             <h1 class="mb-5">상호 검색</h1>
-                            <form class="form-subscribe" id ="frm" method="post" action="list.do" ><!--  -->
+                            <form class="form-subscribe" action="/shop.do" method="post" >
                                 <!-- Email address input-->
                                 <div class="row">
                                     <div class="col">
-                                        <input class="form-control" id="keyword1" name="keyword1"type="text" placeholder="상호명"/><p></p>
-                                        <input class="form-control" id="keyword2" name="keyword2" type="text" placeholder="주소"/><p></p>
-                                        <input class="form-control" id="keyword3" name="keyword3" type="text" placeholder="대분류 업종"/><p></p>
-                                        <input class="form-control" id="keyword4" name="keyword4" type="text" placeholder="중분류 업종"/><p></p>
-                                        <input class="form-control" id="keyword5" name="keyword5" type="text" placeholder="소분류 업종"/><p></p>
+                                        <input class="form-control" id="eventNm" name="eventNm"type="text" placeholder="쇼 명"/><p></p>
                                     </div>
-                                    <div class="col-auto"><button class="btn btn-primary" id="btnSearch"  type="button" >Submit</button></div> 
+                                    <div class="col-auto"><button class="btn btn-primary" type="submit" >Submit</button></div> 
                                     <!-- <div class="col-auto"><button class="btn btn-primary"  type="submit" >Submit</button></div>  --> 
                                 </div>
                             </form>
@@ -58,6 +53,75 @@
                 </div>
             </div>
         </header>
+
+		<section class="testimonials text-center bg-light">
+        <div class="container">
+             <!-- Page Heading -->
+             <h1 class="h3 mb-2 text-gray-800">리스트</h1>
+             <div class="card shadow mb-4">
+                 <div class="card-header py-3">
+                     <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                 </div>
+                 <div class="card-body">
+                     <div class="table-responsive">
+                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                             <thead>
+                                 <tr>
+                                     <th>상호명</th>
+					                 <th>주소</th>
+					                 <th>대분류</th>
+					                 <th>중분류</th>
+					                 <th>소분류</th>
+                                 </tr>
+                             </thead>
+                             <tbody>
+                             
+                               <c:forEach var="result" items="${list }" varStatus="loop">
+                                 <tr>
+                                     <td>${result.eventNm }</td>
+					                 <td>${result.id }</td>
+					                 <td></td>
+					                 <td></td>
+					                 <td></td>
+                                 </tr>
+                               </c:forEach>
+                             </tbody>
+                         </table>
+                     </div>
+                 </div>
+             </div>
+
+         </div>
+			<!-- 페이징 -->
+		<div id ="paginationBox" class="text-center">
+			<ul class="pagination" style="justify-content: center; ">
+			
+				<c:if test="${pagination.prev }">
+					<li class="page-item"><a class="page-link" href="#" 
+					onclick="fn_prev('${pagination.page }','${pagination.range }', '${pagination.rangeSize }','${pagination.listSize }'
+					, '${search.keyword1}', '${search.keyword2}', '${search.keyword3}', '${search.keyword4}', '${search.keyword5}')">이전</a>
+				</c:if>
+				<c:forEach begin="${pagination.startPage }" end="${pagination.endPage}" var="count">
+					<li class="page-item <c:out value="${pagination.page ==  count ? 'active' : ''}"/> ">
+					<a class="page-link" href="#" 
+						onclick="fn_pagination('${count	 }', '${pagination.range }','${paginationf.rangeSize }',
+						'${pagination.listSize }','${search.keyword1 }', '${search.keyword2}', '${search.keyword3}', '${search.keyword4}', '${search.keyword5}')">
+						${count}</a></li>
+				</c:forEach>	
+				
+				<c:if test="${pagination.next }">
+					<li class="page-item"><a class="page-link" href="#" 
+					onclick="fn_next('${pagination.page }','${pagination.range }', '${pagination.rangeSize }',
+						'${pagination.listSize }', '${search.keyword1}', '${search.keyword2}', '${search.keyword3}', '${search.keyword4}', '${search.keyword5}')">다음</a>
+					</li>
+				</c:if>
+			
+			</ul>
+		</div> 
+	<!-- 페이징 종료 -->
+       </section>
+       
+       
         <!-- Footer-->
         <footer class="footer bg-light">
             <div class="container">
@@ -78,27 +142,31 @@
                 </div>
             </div>
         </footer>
-        <!-- Bootstrap core JS-->
+
+<!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="resources/js/scripts.js"></script>
         <script src="resources/js/jquery-3.4.1.min.js"></script>
 	</body>
 <script>
-$(document).on('click','#btnSearch',function(e){
+
+function btnSearch() {
 	
-	e.preventDefault();
-	var url = "/list.do";
-	url += "?keyword1=" + $('#keyword1').val();
-	url += "&keyword2=" + $('#keyword2').val();
-	url += "&keyword3=" + $('#keyword3').val();
-	url += "&keyword4=" + $('#keyword4').val();
-	url += "&keyword5=" + $('#keyword5').val();
-	location.href = url;
-	console.log(url);
-
-});
-
-
+	var eventNm = $("#eventNm").val();
+	location.href="shop.do";
+	/*
+	$.ajax({
+		url: "shop.do",
+		type: "post",
+		data : {"eventNm" : eventNm},
+		datatype : "json",
+		contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+		success : location="show.do",
+		error :function() {alert("error");}
+	});*/
+	
+}
+	
 </script>
 </html>
